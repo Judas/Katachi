@@ -9,6 +9,11 @@
 ## Download
 The application is available on Google Play : [https://play.google.com/store/apps/details?id=com.judas.katachi]()
 
+## Dependencies
+This project is strongnly based on the [SGF4J](https://github.com/toomasr/sgf4j) library for parsing SGF files
+
+[BubbleSeekBar](https://github.com/woxingxiao/BubbleSeekBar) 
+
 ## License
 ```
    Copyright 2020 Jules Tréhorel
