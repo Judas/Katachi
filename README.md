@@ -7,11 +7,11 @@
 ****
 
 ## Screenshots
-![classic](https://github.com/Judas/Katachi/blob/master/screenshot/classic.png)
-![book](https://github.com/Judas/Katachi/blob/master/screenshot/book.png)
+![classic](https://github.com/Judas/Katachi/blob/master/screenshots/classic.png)
+![book](https://github.com/Judas/Katachi/blob/master/screenshots/book.png)
 ******
-![katachi](https://github.com/Judas/Katachi/blob/master/screenshot/katachi.png)
-![fire](https://github.com/Judas/Katachi/blob/master/screenshot/fire.png)
+![katachi](https://github.com/Judas/Katachi/blob/master/screenshots/katachi.png)
+![fire](https://github.com/Judas/Katachi/blob/master/screenshots/fire.png)
 
 ## Download
 The application is available on Google Play : [https://play.google.com/store/apps/details?id=com.judas.katachi]()
