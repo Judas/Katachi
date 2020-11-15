@@ -1,17 +1,18 @@
 # Katachi
 
-![logo](https://github.com/Judas/Katachi/blob/master/app/src/main/res/mipmap-xxhdpi/ic_launcher.png)
+<img src="https://github.com/Judas/Katachi/blob/master/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" width="100">
+
 
 **A simple Android app, for customizing look on your SGF files**
 
 ****
 
 ## Screenshots
-![classic](https://github.com/Judas/Katachi/blob/master/screenshots/classic.png)
-![book](https://github.com/Judas/Katachi/blob/master/screenshots/book.png)
+<img src="https://github.com/Judas/Katachi/blob/master/screenshots/classic.png" width="200">
+<img src="https://github.com/Judas/Katachi/blob/master/screenshots/book.png" width="200">
 ******
-![katachi](https://github.com/Judas/Katachi/blob/master/screenshots/katachi.png)
-![fire](https://github.com/Judas/Katachi/blob/master/screenshots/fire.png)
+<img src="https://github.com/Judas/Katachi/blob/master/screenshots/katachi.png" width="200">
+<img src="https://github.com/Judas/Katachi/blob/master/screenshots/fire.png" width="200">
 
 ## Download
 The application is available on Google Play : [https://play.google.com/store/apps/details?id=com.judas.katachi]()
