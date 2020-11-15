@@ -3,11 +3,11 @@
 
 **A simple Android app, for customizing the look of your SGF files**
 
-## Screenshot
+## Screenshots
 ![screenshot](https://github.com/Judas/Katachi/blob/master/screenshots/screenshot.png)
 
 ## Download
-The application is available on Google Play : [https://play.google.com/store/apps/details?id=com.judas.katachi]()
+The application is available on [Google Play](https://play.google.com/store/apps/details?id=com.judas.katachi)
 
 ## Dependencies
 This project is strongnly based on the [SGF4J](https://github.com/toomasr/sgf4j) library for parsing SGF files
