@@ -1,0 +1,55 @@
+<resources>
+
+    <string name="retry">Retry</string>
+
+    <string name="app_headline">Pimp your SGF</string>
+    <string name="select">Select SGF file</string>
+    <string name="selection_failure">Error while fetching SGF file</string>
+    <string name="loading_failure">Error while loading SGF file</string>
+
+    <string name="edit_menu_themes">Themes</string>
+    <string name="edit_menu_save">Save theme</string>
+    <string name="edit_menu_export">Export</string>
+
+    <string name="config_board">Board</string>
+    <string name="config_board_color">Color</string>
+    <string name="config_board_padding">Extra padding</string>
+
+    <string name="config_line">Lines</string>
+    <string name="config_line_color">Color</string>
+    <string name="config_line_width">Width</string>
+    <string name="config_line_overflow">Overflow</string>
+
+    <string name="config_white_stones">White stones</string>
+    <string name="config_white_stone_color">Fill color</string>
+    <string name="config_white_stone_stroke_color">Stroke color</string>
+    <string name="config_white_stone_stroke_width">Stroke width</string>
+    <string name="config_current_white_stone_color">Highlighted fill color</string>
+    <string name="config_current_white_stone_stroke_color">Highlighted stroke color</string>
+    <string name="config_current_white_stone_stroke_width">Highlighted stroke width</string>
+
+    <string name="config_black_stones">Black stones</string>
+    <string name="config_black_stone_color">Fill color</string>
+    <string name="config_black_stone_stroke_color">Stroke color</string>
+    <string name="config_black_stone_stroke_width">Stroke width</string>
+    <string name="config_current_black_stone_color">Highlighted fill color</string>
+    <string name="config_current_black_stone_stroke_color">Highlighted stroke color</string>
+    <string name="config_current_black_stone_stroke_width">Highlighted stroke width</string>
+
+    <string name="config_current_stone">Move</string>
+    <string name="config_current_stone_move">Move number</string>
+    <string name="config_current_stone_highlight">Highlight</string>
+    <string name="config_current_stone_highlight_text">Highlight current move</string>
+
+    <string name="on">ON</string>
+    <string name="off">OFF</string>
+
+    <string name="theme_title">Title</string>
+    <string name="theme_title_required">Please enter the theme title</string>
+
+    <string name="export_failure">Error while exporting file</string>
+    <string name="export_success">File saved in Downloads folder</string>
+
+    <string name="about_message">Version %s\n\nMade with love by Jules Tréhorel (KGS: Judas).\n\nThis app uses 3rd party libraries:\n- SGF4J\n- BubbleSeekBar\n- GSON\n\nCode is available on Github (https://github.com/Judas/Katachi)</string>
+
+</resources>

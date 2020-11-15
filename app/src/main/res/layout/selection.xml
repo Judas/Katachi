@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/big_stone">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/big_stone"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/TextBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="@color/textPrimaryInverse"
+            android:textSize="44sp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/TextMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_headline"
+            android:textColor="@color/textSecondaryInverse"
+            android:textSize="20sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/selection_action"
+            android:layout_width="240dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="100dp"
+            android:text="@string/select"
+            android:textAllCaps="false"
+            android:textAppearance="@style/TextMedium"
+            android:textColor="@color/textPrimary"
+            android:textSize="18sp"
+            android:theme="@style/Widget.MaterialComponents.Button"
+            app:backgroundTint="@color/sun"
+            app:cornerRadius="4dp" />
+
+        <ProgressBar
+            android:id="@+id/selection_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="56dp"
+            android:layout_marginTop="100dp"
+            android:indeterminateTint="@color/sun"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/about"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_about" />
+
+</RelativeLayout>
