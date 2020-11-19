@@ -7,7 +7,6 @@ import android.view.SurfaceHolder;
 
 import com.judas.katachi.R;
 import com.judas.katachi.core.prefs.PreferenceHelper;
-import com.judas.katachi.core.theme.KatachiTheme;
 import com.judas.katachi.utils.view.BoardDrawer;
 import com.toomasr.sgf4j.Sgf;
 import com.toomasr.sgf4j.board.VirtualBoard;
@@ -44,8 +43,9 @@ public class KatachiWallpaperService extends WallpaperService {
     public class KatachiWallpaperEngine extends Engine {
         private final BoardDrawer drawer;
 
-        private final long speedMs;
-        private final long delayMs;
+        private final Context context;
+        private long speedMs;
+        private long delayMs;
 
         private final Random random = new Random();
         private Disposable timer;
@@ -53,17 +53,23 @@ public class KatachiWallpaperService extends WallpaperService {
         public KatachiWallpaperEngine(final Context context) {
             log(DEBUG, TAG, "KatachiWallpaperEngine");
 
+            this.context = context;
+
+            drawer = new BoardDrawer(context);
+            drawer.setBoard(new VirtualBoard());
+
+            initUserValues();
+            loadRandomJoseki();
+            startTimer();
+        }
+
+        private void initUserValues() {
+            log(DEBUG, TAG, "initUserValues");
+
             final PreferenceHelper prefs = prefs(context);
             speedMs = Float.valueOf(prefs.getWallpaperSpeed() * 1000).longValue();
             delayMs = Float.valueOf(prefs.getWallpaperDelay() * 1000).longValue();
-
-            drawer = new BoardDrawer(context);
             drawer.setTheme(prefs.getWallPaperTheme(context));
-            drawer.setBoard(new VirtualBoard());
-
-            log(DEBUG, TAG, "speed=" + speedMs + " delay" + delayMs);
-            loadRandomJoseki();
-            startTimer();
         }
 
         @Override
@@ -111,6 +117,7 @@ public class KatachiWallpaperService extends WallpaperService {
             log(DEBUG, TAG, "startTimer");
 
             stopTimer();
+            initUserValues();
 
             timer = interval(delayMs, speedMs, MILLISECONDS)
                     .onBackpressureDrop()
