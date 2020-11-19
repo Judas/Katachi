@@ -13,7 +13,7 @@ import com.judas.katachi.R;
 
 import static android.content.Intent.ACTION_OPEN_DOCUMENT;
 import static android.content.Intent.CATEGORY_OPENABLE;
-import static android.view.View.GONE;
+import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 import static com.judas.katachi.BuildConfig.VERSION_NAME;
 import static com.judas.katachi.utils.log.Logger.Level.DEBUG;
@@ -21,10 +21,12 @@ import static com.judas.katachi.utils.log.Logger.Level.ERROR;
 import static com.judas.katachi.utils.log.Logger.log;
 import static com.judas.katachi.utils.view.ViewUtils.showSnackbar;
 
-public class SelectionActivity extends AppCompatActivity {
-    private static final String TAG = SelectionActivity.class.getSimpleName();
+public class HomeActivity extends AppCompatActivity {
+    private static final String TAG = HomeActivity.class.getSimpleName();
 
-    private MaterialButton action;
+    private MaterialButton sgfAction;
+    private MaterialButton wallpaperAction;
+    private MaterialButton themeAction;
     private ProgressBar progress;
 
     @Override
@@ -32,12 +34,18 @@ public class SelectionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         log(DEBUG, TAG, "onCreate");
 
-        setContentView(R.layout.selection);
+        setContentView(R.layout.home);
 
-        action = findViewById(R.id.selection_action);
-        action.setOnClickListener(v -> selectSgf());
+        sgfAction = findViewById(R.id.sgf_to_png);
+        sgfAction.setOnClickListener(v -> selectSgf());
 
-        progress = findViewById(R.id.selection_progress);
+        wallpaperAction = findViewById(R.id.wallpaper);
+        wallpaperAction.setOnClickListener(v -> selectSgfFolder());
+
+        themeAction = findViewById(R.id.edit_themes);
+        themeAction.setOnClickListener(v -> openThemeEditing());
+
+        progress = findViewById(R.id.progress);
 
         findViewById(R.id.about).setOnClickListener(v -> showAboutDialog());
 
@@ -47,8 +55,10 @@ public class SelectionActivity extends AppCompatActivity {
     private void setLoading(final boolean loading) {
         log(DEBUG, TAG, "setLoading " + loading);
 
-        progress.setVisibility(loading ? VISIBLE : GONE);
-        action.setVisibility(loading ? GONE : VISIBLE);
+        progress.setVisibility(loading ? VISIBLE : INVISIBLE);
+        sgfAction.setEnabled(!loading);
+        wallpaperAction.setEnabled(!loading);
+        themeAction.setEnabled(!loading);
     }
 
     private void selectSgf() {
@@ -66,13 +76,22 @@ public class SelectionActivity extends AppCompatActivity {
 
                     if (result.getResultCode() != RESULT_OK) {
                         log(ERROR, TAG, "registerForActivityResult FAILURE");
-                        showSnackbar(this, R.string.selection_failure);
+                        showSnackbar(this, R.string.sgf_selection_failure);
                         return;
                     }
-
-                    EditActivity.start(this, result.getData().getData());
+                    SgfToPngActivity.start(this, result.getData().getData());
                 }
         ).launch(intent);
+    }
+
+    private void selectSgfFolder() {
+        log(DEBUG, TAG, "selectSgfFolder");
+        WallpaperActivity.start(this);
+    }
+
+    private void openThemeEditing() {
+        log(DEBUG, TAG, "openThemeEditing");
+        EditThemeActivity.start(this);
     }
 
     private void showAboutDialog() {
@@ -80,8 +99,6 @@ public class SelectionActivity extends AppCompatActivity {
 
         final String about = getString(R.string.about_message, VERSION_NAME);
         new AlertDialog.Builder(this)
-                .setTitle(R.string.app_name)
-                .setIcon(R.mipmap.ic_launcher_round)
                 .setMessage(about)
                 .setPositiveButton(android.R.string.ok, (dialog, which) -> {
                     // Keep empty

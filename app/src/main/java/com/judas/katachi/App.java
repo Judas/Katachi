@@ -17,8 +17,3 @@ public class App extends Application {
         log(DEBUG, TAG, "onCreate");
     }
 }
-
-// TODO License :
-// SGF4J
-// TILE DRAWABLE
-// BUBBLE SEEKBAR

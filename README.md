@@ -1,7 +1,9 @@
 # Katachi
 ![logo](https://github.com/Judas/Katachi/blob/master/app/src/main/res/mipmap-xxhdpi/ic_launcher.png)
 
-**A simple Android app, for customizing the look of your SGF files**
+**Katachi** is a simple Android application that lets you export your **SGF files to PNG images**, allowing some visual customization along the way.
+
+It also contains a **live wallpaper** that plays **joseki sequences** at random.
 
 ## Screenshots
 ![screenshot](https://github.com/Judas/Katachi/blob/master/screenshots/screenshot.png)
@@ -10,9 +12,11 @@
 The application is available on [Google Play](https://play.google.com/store/apps/details?id=com.judas.katachi)
 
 ## Dependencies
-This project is strongnly based on the [SGF4J](https://github.com/toomasr/sgf4j) library for parsing SGF files
+This project is strongnly based on the [SGF4J](https://github.com/toomasr/sgf4j) library for parsing SGF files.
 
 [BubbleSeekBar](https://github.com/woxingxiao/BubbleSeekBar) 
+
+The joseki sequences played are extracted from [Kogo's Joseki Dictionary](https://waterfire.us/joseki.htm).
 
 ## License
 ```

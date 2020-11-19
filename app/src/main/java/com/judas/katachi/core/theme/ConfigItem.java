@@ -13,8 +13,7 @@ public enum ConfigItem {
     BOARD(R.string.config_board),
     LINES(R.string.config_line),
     WHITE(R.string.config_white_stones),
-    BLACK(R.string.config_black_stones),
-    CURRENT(R.string.config_current_stone);
+    BLACK(R.string.config_black_stones);
 
     @StringRes
     public final int label;

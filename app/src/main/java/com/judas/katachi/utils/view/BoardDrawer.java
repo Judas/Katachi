@@ -1,4 +1,4 @@
-package com.judas.katachi.ui.views;
+package com.judas.katachi.utils.view;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -6,8 +6,6 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.util.AttributeSet;
-import android.view.View;
 
 import androidx.core.content.ContextCompat;
 
@@ -21,57 +19,57 @@ import com.toomasr.sgf4j.parser.GameNode;
 import static android.graphics.Bitmap.Config.ARGB_8888;
 import static android.text.TextUtils.isEmpty;
 import static com.judas.katachi.utils.log.Logger.Level.DEBUG;
-import static com.judas.katachi.utils.log.Logger.Level.ERROR;
-import static com.judas.katachi.utils.log.Logger.Level.VERBOSE;
 import static com.judas.katachi.utils.log.Logger.log;
+import static com.judas.katachi.utils.log.Logger.logError;
 import static com.judas.katachi.utils.view.TileVectorDrawable.tilePattern;
 import static com.toomasr.sgf4j.board.StoneState.EMPTY;
 import static java.lang.Integer.parseInt;
 import static java.lang.Math.max;
 import static java.lang.Math.round;
 
-public class VectorView extends View {
-    public interface OnDrawnListener {
-        void onDrawn();
-
-        void onError(final Exception e);
-    }
-
-    private static final String TAG = VectorView.class.getSimpleName();
+public class BoardDrawer {
+    private static final String TAG = BoardDrawer.class.getSimpleName();
     private static final String SIZE_KEY = "SZ";
+    private static final int DEFAULT_BOARD_SIZE = 19;
 
+    private float width;
+    private float height;
+    private VirtualBoard board;
     private Game game;
     private GameNode gameNode;
-    private int lastMoveNumber;
-    private final VirtualBoard board;
-
     private KatachiTheme theme;
-    private OnDrawnListener listener;
 
     private final RectF bgRect;
     private final Drawable pattern;
 
-    private Bitmap exportBitmap;
-    private Canvas exportCanvas;
+    private final Bitmap exportBitmap;
+    private final Canvas exportCanvas;
 
-    public VectorView(final Context context) {
-        this(context, null, 0);
-    }
-
-    public VectorView(final Context context, final AttributeSet attrs) {
-        this(context, attrs, 0);
-    }
-
-    public VectorView(final Context context, final AttributeSet attrs, final int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        log(DEBUG, TAG, "VectorView");
-
+    public BoardDrawer(final Context context) {
         bgRect = new RectF();
-        board = new VirtualBoard();
-        pattern = tilePattern(ContextCompat.getDrawable(getContext(), R.drawable.bg_pattern));
-
+        pattern = tilePattern(ContextCompat.getDrawable(context, R.drawable.bg_pattern));
         exportBitmap = Bitmap.createBitmap(3000, 3000, ARGB_8888);
         exportCanvas = new Canvas(exportBitmap);
+    }
+
+    public Bitmap getBitmap() {
+        return exportBitmap;
+    }
+
+    public void setWidth(final float width) {
+        this.width = width;
+    }
+
+    public void setHeight(final float height) {
+        this.height = height;
+    }
+
+    public VirtualBoard getBoard() {
+        return board;
+    }
+
+    public void setBoard(final VirtualBoard board) {
+        this.board = board;
     }
 
     public Game getGame() {
@@ -79,92 +77,33 @@ public class VectorView extends View {
     }
 
     public void setGame(final Game game) {
-        log(DEBUG, TAG, "setGame");
         this.game = game;
-        initBoard();
     }
 
-    public int getLastMoveNumber() {
-        return lastMoveNumber;
+    public GameNode getGameNode() {
+        return gameNode;
+    }
+
+    public void setGameNode(final GameNode gameNode) {
+        this.gameNode = gameNode;
+        board.fastForwardTo(gameNode);
     }
 
     public KatachiTheme getTheme() {
-        log(DEBUG, TAG, "getTheme");
         return theme;
     }
 
     public void setTheme(final KatachiTheme theme) {
-        log(DEBUG, TAG, "setTheme");
         this.theme = theme;
-        initBoard();
     }
 
-    private void initBoard() {
-        log(DEBUG, TAG, "initBoard");
-
-        if (game == null || theme == null) {
-            return;
-        }
-
-        // Go to last node
-        gameNode = game.getLastMove();
-        while (isEmpty(gameNode.getMoveString())) {
-            gameNode = gameNode.getParentNode();
-        }
-
-        // Validate move number
-        lastMoveNumber = gameNode.getMoveNo();
-        if (theme.currentMoveNumber > lastMoveNumber) {
-            theme.currentMoveNumber = -1;
-        }
-
-        // Go back if necessary
-        if (theme.currentMoveNumber != -1) {
-            while (gameNode.getMoveNo() != theme.currentMoveNumber) {
-                gameNode = gameNode.getParentNode();
-            }
-        }
-
-        board.fastForwardTo(gameNode);
-    }
-
-    public void setOnDrawnListener(final OnDrawnListener listener) {
-        log(DEBUG, TAG, "setOnDrawnListener");
-        this.listener = listener;
-    }
-
-    private void notifyDrawn() {
-        log(VERBOSE, TAG, "notifyDrawn");
-
-        if (listener != null) {
-            listener.onDrawn();
-        }
-    }
-
-    private void notifyError(final Exception e) {
-        log(ERROR, TAG, "notifyError " + e.getMessage());
-
-        if (listener != null) {
-            listener.onError(e);
-        }
-    }
-
-    public Bitmap getBitmap() {
-        return exportBitmap;
-    }
-
-    @Override
-    protected void onDraw(final Canvas canvas) {
-        super.onDraw(canvas);
-        log(VERBOSE, TAG, "onDraw");
+    public void drawOn(final Canvas canvas) {
+        log(DEBUG, TAG, "drawOn");
 
         // Quick exit
-        if (game == null || theme == null) {
+        if (game == null || theme == null || width <= 0 || height <= 0) {
             return;
         }
-
-        final float width = (float) getWidth();
-        final float height = (float) getHeight();
 
         try {
             final float marginV = max(0, (height - width) / 2);
@@ -186,7 +125,8 @@ public class VectorView extends View {
             exportCanvas.drawRect(bgRect, theme.backgroundPaint);
 
             // Lines
-            final int size = parseInt(game.getProperties().get(SIZE_KEY));
+            final String sizeString = game.getProperties().get(SIZE_KEY);
+            final int size = isEmpty(sizeString) ? DEFAULT_BOARD_SIZE : parseInt(sizeString);
             final int squareSize = round(bgSize / (size + theme.paddingRatio));
             final float padding = (bgSize - (squareSize * (size - 1))) / 2;
 
@@ -223,10 +163,8 @@ public class VectorView extends View {
                     exportCanvas.drawCircle(cx, cy, stoneRadius, theme.getStoneStrokePaint(state, isCurrent));
                 }
             }
-
-            notifyDrawn();
         } catch (final Exception e) {
-            notifyError(e);
+            logError(TAG, "drawOn", e);
         }
     }
 }

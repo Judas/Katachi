@@ -37,9 +37,11 @@
 
         <com.xw.repo.BubbleSeekBar
             android:id="@+id/color_channel_red"
+            style="@style/TextBold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
+            android:textColor="@color/textPrimary"
             app:bsb_max="255"
             app:bsb_min="0" />
     </LinearLayout>
@@ -51,11 +53,13 @@
         android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatTextView
+            style="@style/TextBold"
             android:layout_width="12dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:gravity="center"
-            android:text="G" />
+            android:text="G"
+            android:textColor="@color/textPrimary" />
 
         <com.xw.repo.BubbleSeekBar
             android:id="@+id/color_channel_green"
@@ -73,11 +77,13 @@
         android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatTextView
+            style="@style/TextBold"
             android:layout_width="12dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:gravity="center"
-            android:text="B" />
+            android:text="B"
+            android:textColor="@color/textPrimary" />
 
         <com.xw.repo.BubbleSeekBar
             android:id="@+id/color_channel_blue"
@@ -95,11 +101,13 @@
         android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatTextView
+            style="@style/TextBold"
             android:layout_width="12dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:gravity="center"
-            android:text="A" />
+            android:text="A"
+            android:textColor="@color/textPrimary" />
 
         <com.xw.repo.BubbleSeekBar
             android:id="@+id/color_channel_alpha"

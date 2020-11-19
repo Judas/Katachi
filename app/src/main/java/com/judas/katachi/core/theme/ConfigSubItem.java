@@ -8,13 +8,10 @@ import com.judas.katachi.R;
 
 import static com.judas.katachi.core.theme.ConfigItem.BLACK;
 import static com.judas.katachi.core.theme.ConfigItem.BOARD;
-import static com.judas.katachi.core.theme.ConfigItem.CURRENT;
 import static com.judas.katachi.core.theme.ConfigItem.LINES;
 import static com.judas.katachi.core.theme.ConfigItem.WHITE;
-import static com.judas.katachi.core.theme.ConfigSubItemType.BOOLEAN;
 import static com.judas.katachi.core.theme.ConfigSubItemType.COLOR;
 import static com.judas.katachi.core.theme.ConfigSubItemType.DIMENSION;
-import static com.judas.katachi.core.theme.ConfigSubItemType.INTEGER;
 import static com.judas.katachi.core.theme.ConfigSubItemType.RATIO;
 
 public enum ConfigSubItem {
@@ -34,9 +31,7 @@ public enum ConfigSubItem {
     BLACK_STROKE_WIDTH(R.string.config_black_stone_stroke_width, -1, DIMENSION, 0f, 2f, BLACK),
     BLACK_HIGHLIGHTED_FILL_COLOR(R.string.config_current_black_stone_color, -1, COLOR, -1f, -1f, BLACK),
     BLACK_HIGHLIGHTED_STROKE_COLOR(R.string.config_current_black_stone_stroke_color, -1, COLOR, -1f, -1f, BLACK),
-    BLACK_HIGHLIGHTED_STROKE_WIDTH(R.string.config_current_black_stone_stroke_width, -1, DIMENSION, 0f, 2f, BLACK),
-    CURRENT_MOVE_NUMBER(R.string.config_current_stone_move, -1, INTEGER, 0f, -1f, CURRENT),
-    CURRENT_MOVE_HIGHLIGHT(R.string.config_current_stone_highlight, R.string.config_current_stone_highlight_text, BOOLEAN, 0f, 2f, CURRENT);
+    BLACK_HIGHLIGHTED_STROKE_WIDTH(R.string.config_current_black_stone_stroke_width, -1, DIMENSION, 0f, 2f, BLACK);
 
     @StringRes
     public final int label;

@@ -19,6 +19,19 @@
         <item name="fontFamily">@font/quicksand_bold</item>
     </style>
 
+    <!-- Button -->
+
+    <style name="DefaultButton" parent="@style/Widget.MaterialComponents.Button">
+        <item name="android:layout_width">240dp</item>
+        <item name="android:layout_height">56dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textAppearance">@style/TextMedium</item>
+        <item name="android:textColor">@color/textPrimary</item>
+        <item name="android:textSize">18sp</item>
+        <item name="backgroundTint">@color/sun</item>
+        <item name="cornerRadius">4dp</item>
+    </style>
+
     <!-- Snackbars -->
 
     <style name="Snackbar" parent="@style/Widget.MaterialComponents.Snackbar">
@@ -42,21 +55,4 @@
     <style name="AlertDialog" parent="@style/Theme.MaterialComponents.Light.Dialog.Alert">
         <item name="colorPrimary">@color/sun</item>
     </style>
-
-    <!-- Seekbar -->
-
-    <style name="SeekBar" parent="@style/Widget.AppCompat.SeekBar">
-        <item name="android:progressBackgroundTint">@color/fiord</item>
-        <item name="android:progressTint">@color/big_stone</item>
-        <item name="android:colorControlActivated">@color/big_stone</item>
-    </style>
-
-    <!-- Switch -->
-
-    <style name="SwitchTextAppearance" parent="TextBold">
-        <item name="textAllCaps">true</item>
-        <item name="android:textSize">10sp</item>
-        <item name="android:textColor">@color/big_stone</item>
-    </style>
-
 </resources>

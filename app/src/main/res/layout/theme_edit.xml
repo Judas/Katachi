@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/big_stone">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/theme_edit_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentTop="true"
+        android:paddingTop="@dimen/status_bar_offset"
+        app:menu="@menu/theme_edit_menu"
+        app:navigationIconColor="@color/sun" />
+
+    <LinearLayout
+        android:id="@+id/theme_edit_actions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true"
+            android:scrollbars="none">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/theme_edit_main_chip_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                app:chipSpacingHorizontal="8dp"
+                app:chipSpacingVertical="-8dp"
+                app:selectionRequired="false"
+                app:singleLine="true"
+                app:singleSelection="true" />
+        </HorizontalScrollView>
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true"
+            android:scrollbars="none">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/theme_edit_secondary_chip_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                app:chipSpacingHorizontal="8dp"
+                app:chipSpacingVertical="-8dp"
+                app:selectionRequired="false"
+                app:singleLine="true"
+                app:singleSelection="true" />
+
+        </HorizontalScrollView>
+
+    </LinearLayout>
+
+    <com.judas.katachi.ui.views.BoardView
+        android:id="@+id/theme_edit_preview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/theme_edit_actions"
+        android:layout_below="@id/theme_edit_toolbar" />
+
+</RelativeLayout>

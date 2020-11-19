@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:background="@color/big_stone">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/TextBold"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@string/move_speed"
+            android:textColor="@color/textPrimaryInverse" />
+
+        <com.xw.repo.BubbleSeekBar
+            android:id="@+id/move_speed_picker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:bsb_is_float_type="true"
+            app:bsb_show_progress_in_float="true" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/TextBold"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@string/end_delay"
+            android:textColor="@color/textPrimaryInverse" />
+
+        <com.xw.repo.BubbleSeekBar
+            android:id="@+id/end_delay_picker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:bsb_is_float_type="true"
+            app:bsb_show_progress_in_float="true" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/TextBold"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@string/theme"
+            android:textColor="@color/textPrimaryInverse" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/TextMedium"
+            android:id="@+id/theme_picker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:drawableEnd="@drawable/ic_themes"
+            android:drawablePadding="16dp"
+            android:gravity="end"
+            android:textColor="@color/sun"
+            tools:text="Classic" />
+    </LinearLayout>
+</LinearLayout>

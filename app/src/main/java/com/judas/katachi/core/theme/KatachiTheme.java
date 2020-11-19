@@ -9,7 +9,6 @@ import androidx.annotation.ColorInt;
 
 import com.toomasr.sgf4j.board.StoneState;
 
-import java.io.Serializable;
 import java.util.Objects;
 
 import static android.graphics.Paint.ANTI_ALIAS_FLAG;
@@ -22,6 +21,8 @@ import static com.judas.katachi.utils.view.ViewUtils.dpToPx;
 
 public class KatachiTheme implements Parcelable {
     private static final String TAG = KatachiTheme.class.getSimpleName();
+
+    public String name;
 
     @ColorInt
     public int backgroundColor;
@@ -66,12 +67,10 @@ public class KatachiTheme implements Parcelable {
     public Paint currentWhiteStonePaint;
     public Paint currentWhiteStoneStrokePaint;
 
-    public boolean highlightCurrentStone;
-    public int currentMoveNumber;
-
     public KatachiTheme(final Context context, final PresetTheme preset) {
         log(DEBUG, TAG, "KatachiTheme");
 
+        this.name = preset.label();
         this.backgroundColor = preset.backgroundColor;
         this.paddingRatio = preset.paddingRatio;
         this.lineColor = preset.lineColor;
@@ -89,13 +88,36 @@ public class KatachiTheme implements Parcelable {
         this.currentWhiteStoneColor = preset.currentWhiteStoneColor;
         this.currentWhiteStoneStrokeColor = preset.currentWhiteStoneStrokeColor;
         this.currentWhiteStoneStrokeWidth = preset.currentWhiteStoneStrokeWidth;
-        this.highlightCurrentStone = preset.highlightCurrentStone;
-        this.currentMoveNumber = preset.currentMoveNumber;
 
         init(context);
     }
 
-    public void init(final Context context) {
+    public KatachiTheme(final Context context, final KatachiTheme previous) {
+        log(DEBUG, TAG, "KatachiTheme");
+
+        this.name = previous.name;
+        this.backgroundColor = previous.backgroundColor;
+        this.paddingRatio = previous.paddingRatio;
+        this.lineColor = previous.lineColor;
+        this.lineWidth = previous.lineWidth;
+        this.lineOverflowRatio = previous.lineOverflowRatio;
+        this.whiteStoneColor = previous.whiteStoneColor;
+        this.whiteStoneStrokeColor = previous.whiteStoneStrokeColor;
+        this.whiteStoneStrokeWidth = previous.whiteStoneStrokeWidth;
+        this.blackStoneColor = previous.blackStoneColor;
+        this.blackStoneStrokeColor = previous.blackStoneStrokeColor;
+        this.blackStoneStrokeWidth = previous.blackStoneStrokeWidth;
+        this.currentBlackStoneColor = previous.currentBlackStoneColor;
+        this.currentBlackStoneStrokeColor = previous.currentBlackStoneStrokeColor;
+        this.currentBlackStoneStrokeWidth = previous.currentBlackStoneStrokeWidth;
+        this.currentWhiteStoneColor = previous.currentWhiteStoneColor;
+        this.currentWhiteStoneStrokeColor = previous.currentWhiteStoneStrokeColor;
+        this.currentWhiteStoneStrokeWidth = previous.currentWhiteStoneStrokeWidth;
+
+        init(context);
+    }
+
+    private void init(final Context context) {
         log(DEBUG, TAG, "init");
 
         backgroundPaint = new Paint(ANTI_ALIAS_FLAG);
@@ -148,17 +170,9 @@ public class KatachiTheme implements Parcelable {
     public Paint getStonePaint(final StoneState state, final boolean current) {
         switch (state) {
             case BLACK:
-                if (current && highlightCurrentStone) {
-                    return currentBlackStonePaint;
-                } else {
-                    return blackStonePaint;
-                }
+                return current ? currentBlackStonePaint : blackStonePaint;
             case WHITE:
-                if (current && highlightCurrentStone) {
-                    return currentWhiteStonePaint;
-                } else {
-                    return whiteStonePaint;
-                }
+                return current ? currentWhiteStonePaint : whiteStonePaint;
             case EMPTY:
             default:
                 return null;
@@ -168,17 +182,9 @@ public class KatachiTheme implements Parcelable {
     public Paint getStoneStrokePaint(final StoneState state, final boolean current) {
         switch (state) {
             case BLACK:
-                if (current && highlightCurrentStone) {
-                    return currentBlackStoneStrokePaint;
-                } else {
-                    return blackStoneStrokePaint;
-                }
+                return current ? currentBlackStoneStrokePaint : blackStoneStrokePaint;
             case WHITE:
-                if (current && highlightCurrentStone) {
-                    return currentWhiteStoneStrokePaint;
-                } else {
-                    return whiteStoneStrokePaint;
-                }
+                return current ? currentWhiteStoneStrokePaint : whiteStoneStrokePaint;
             case EMPTY:
             default:
                 return null;
@@ -223,10 +229,6 @@ public class KatachiTheme implements Parcelable {
                 return currentBlackStoneStrokeColor;
             case BLACK_HIGHLIGHTED_STROKE_WIDTH:
                 return currentBlackStoneStrokeWidth;
-            case CURRENT_MOVE_NUMBER:
-                return currentMoveNumber;
-            case CURRENT_MOVE_HIGHLIGHT:
-                return highlightCurrentStone;
         }
         return null;
     }
@@ -286,12 +288,6 @@ public class KatachiTheme implements Parcelable {
             case BLACK_HIGHLIGHTED_STROKE_WIDTH:
                 currentBlackStoneStrokeWidth = (float) value;
                 break;
-            case CURRENT_MOVE_NUMBER:
-                currentMoveNumber = (int) value;
-                break;
-            case CURRENT_MOVE_HIGHLIGHT:
-                highlightCurrentStone = (boolean) value;
-                break;
         }
         init(context);
     }
@@ -309,6 +305,7 @@ public class KatachiTheme implements Parcelable {
     };
 
     protected KatachiTheme(final Parcel in) {
+        name = in.readString();
         backgroundColor = in.readInt();
         paddingRatio = in.readFloat();
         lineColor = in.readInt();
@@ -326,11 +323,10 @@ public class KatachiTheme implements Parcelable {
         currentWhiteStoneColor = in.readInt();
         currentWhiteStoneStrokeColor = in.readInt();
         currentWhiteStoneStrokeWidth = in.readFloat();
-        highlightCurrentStone = in.readInt() == 1;
-        currentMoveNumber = in.readInt();
     }
 
     public void writeToParcel(final Parcel dest, final int flags) {
+        dest.writeString(name);
         dest.writeInt(backgroundColor);
         dest.writeFloat(paddingRatio);
         dest.writeInt(lineColor);
@@ -348,8 +344,6 @@ public class KatachiTheme implements Parcelable {
         dest.writeInt(currentWhiteStoneColor);
         dest.writeInt(currentWhiteStoneStrokeColor);
         dest.writeFloat(currentWhiteStoneStrokeWidth);
-        dest.writeInt(highlightCurrentStone ? 1 : 0);
-        dest.writeInt(currentMoveNumber);
     }
 
     public int describeContents() {
@@ -358,7 +352,7 @@ public class KatachiTheme implements Parcelable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(backgroundColor, paddingRatio, lineColor, lineWidth, lineOverflowRatio, whiteStoneColor, whiteStoneStrokeColor, whiteStoneStrokeWidth, blackStoneColor, blackStoneStrokeColor, blackStoneStrokeWidth, currentBlackStoneColor, currentBlackStoneStrokeColor, currentBlackStoneStrokeWidth, currentWhiteStoneColor, currentWhiteStoneStrokeColor, currentWhiteStoneStrokeWidth, highlightCurrentStone, currentMoveNumber);
+        return Objects.hash(name, backgroundColor, paddingRatio, lineColor, lineWidth, lineOverflowRatio, whiteStoneColor, whiteStoneStrokeColor, whiteStoneStrokeWidth, blackStoneColor, blackStoneStrokeColor, blackStoneStrokeWidth, currentBlackStoneColor, currentBlackStoneStrokeColor, currentBlackStoneStrokeWidth, currentWhiteStoneColor, currentWhiteStoneStrokeColor, currentWhiteStoneStrokeWidth);
     }
 
     @Override
@@ -371,7 +365,8 @@ public class KatachiTheme implements Parcelable {
         }
 
         final KatachiTheme that = ((KatachiTheme) other);
-        return backgroundColor == that.backgroundColor
+        return name != null && name.equals(that.name)
+                && backgroundColor == that.backgroundColor
                 && paddingRatio == that.paddingRatio
                 && lineColor == that.lineColor
                 && lineWidth == that.lineWidth
@@ -387,8 +382,6 @@ public class KatachiTheme implements Parcelable {
                 && currentBlackStoneStrokeWidth == that.currentBlackStoneStrokeWidth
                 && currentWhiteStoneColor == that.currentWhiteStoneColor
                 && currentWhiteStoneStrokeColor == that.currentWhiteStoneStrokeColor
-                && currentWhiteStoneStrokeWidth == that.currentWhiteStoneStrokeWidth
-                && highlightCurrentStone == that.highlightCurrentStone
-                && currentMoveNumber == that.currentMoveNumber;
+                && currentWhiteStoneStrokeWidth == that.currentWhiteStoneStrokeWidth;
     }
 }

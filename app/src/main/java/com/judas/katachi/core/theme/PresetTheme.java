@@ -14,49 +14,49 @@ public enum PresetTheme {
             BLACK, BLACK, 2f,
             WHITE, BLACK, 2f,
             BLACK, RED, 2f,
-            WHITE, BLUE, 2f, false, -1),
+            WHITE, RED, 2f),
 
     BOOK(WHITE, 0.66f,
             BLACK, 1f, 1f,
             BLACK, BLACK, 1.2f,
             WHITE, BLACK, 1.2f,
             BLACK, RED, 2f,
-            WHITE, BLUE, 2f, false, -1),
+            WHITE, RED, 2f),
 
     SEPIA(parseColor("#B0A091"), 0.66f,
             parseColor("#4D443B"), 1f, 1f,
             parseColor("#4D443B"), parseColor("#4D443B"), 1.2f,
             parseColor("#F6E6D7"), parseColor("#4D443B"), 1.2f,
             parseColor("#4D443B"), RED, 2f,
-            parseColor("#F6E6D7"), BLUE, 2f, false, -1),
+            parseColor("#F6E6D7"), BLUE, 2f),
 
     FIRE(parseColor("#FFE7A2"), 0.66f,
             parseColor("#37191B"), 1f, 1f,
             parseColor("#A12826"), parseColor("#A12826"), 1.2f,
             parseColor("#FD9B2A"), parseColor("#FD9B2A"), 1.2f,
-            parseColor("#A12826"), parseColor("#FD4728"), 2f,
-            parseColor("#FD9B2A"), parseColor("#FD4728"), 2f, true, -1),
+            parseColor("#A12826"), BLACK, 2f,
+            parseColor("#FD9B2A"), parseColor("#A12826"), 2f),
 
     LEAF(parseColor("#DAD7CD"), 0.66f,
             parseColor("#344E41"), 1f, 1f,
             parseColor("#3A5A40"), parseColor("#3A5A40"), 1.2f,
             parseColor("#A3B18A"), parseColor("#344E41"), 1.2f,
-            parseColor("#3A5A40"), parseColor("#588157"), 2f,
-            parseColor("#A3B18A"), parseColor("#588157"), 2f, true, -1),
+            parseColor("#588157"), parseColor("#3A5A40"), 2f,
+            parseColor("#DAD7CD"), parseColor("#3A5A40"), 2f),
 
     WATER(parseColor("#142C59"), 0.66f,
             parseColor("#0F60E7"), 1f, 1f,
             parseColor("#6FD2EA"), parseColor("#6FD2EA"), 1.2f,
             parseColor("#F9F9F8"), parseColor("#F9F9F8"), 1.2f,
             parseColor("#6FD2EA"), parseColor("#FEA027"), 2f,
-            parseColor("#F9F9F8"), parseColor("#FEA027"), 2f, true, -1),
+            parseColor("#F9F9F8"), parseColor("#FEA027"), 2f),
 
     KATACHI(parseColor("#14213D"), 0.66f,
             parseColor("#FCA311"), 1f, 0.5f,
             parseColor("#14213D"), parseColor("#FCA311"), 1.2f,
             parseColor("#FCA311"), parseColor("#FCA311"), 1.2f,
             parseColor("#3E4868"), parseColor("#FCA311"), 2f,
-            parseColor("#FFD44F"), parseColor("#FCA311"), 2f, false, -1);
+            parseColor("#FFD44F"), parseColor("#FCA311"), 2f);
 
     @ColorInt
     public final int backgroundColor;
@@ -90,15 +90,12 @@ public enum PresetTheme {
     @ColorInt
     public final int currentWhiteStoneStrokeColor;
     public final float currentWhiteStoneStrokeWidth;
-    public final boolean highlightCurrentStone;
-    public final int currentMoveNumber;
 
     PresetTheme(@ColorInt final int backgroundColor, final float paddingRatio, @ColorInt final int lineColor, final float lineWidth, final float lineOverflowRatio,
                 @ColorInt final int blackStoneColor, @ColorInt final int blackStoneStrokeColor, final float blackStoneStrokeWidth,
                 @ColorInt final int whiteStoneColor, @ColorInt final int whiteStoneStrokeColor, final float whiteStoneStrokeWidth,
                 @ColorInt final int currentBlackStoneColor, @ColorInt final int currentBlackStoneStrokeColor, final float currentBlackStoneStrokeWidth,
-                @ColorInt final int currentWhiteStoneColor, @ColorInt final int currentWhiteStoneStrokeColor, final float currentWhiteStoneStrokeWidth,
-                final boolean highlightCurrentStone, final int currentMoveNumber) {
+                @ColorInt final int currentWhiteStoneColor, @ColorInt final int currentWhiteStoneStrokeColor, final float currentWhiteStoneStrokeWidth) {
         this.backgroundColor = backgroundColor;
         this.paddingRatio = paddingRatio;
         this.lineColor = lineColor;
@@ -116,7 +113,9 @@ public enum PresetTheme {
         this.currentWhiteStoneColor = currentWhiteStoneColor;
         this.currentWhiteStoneStrokeColor = currentWhiteStoneStrokeColor;
         this.currentWhiteStoneStrokeWidth = currentWhiteStoneStrokeWidth;
-        this.highlightCurrentStone = highlightCurrentStone;
-        this.currentMoveNumber = currentMoveNumber;
+    }
+
+    public String label() {
+        return name().substring(0, 1) + name().substring(1).toLowerCase();
     }
 }

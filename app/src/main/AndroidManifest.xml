@@ -3,6 +3,9 @@
     package="com.judas.katachi">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-feature
+        android:name="android.software.live_wallpaper"
+        android:required="true" />
 
     <application
         android:name=".App"
@@ -13,8 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-
-        <activity android:name=".ui.activities.SelectionActivity">
+        <activity android:name=".ui.activities.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,8 +24,23 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.activities.EditActivity" />
+        <activity android:name=".ui.activities.SgfToPngActivity" />
+        <activity android:name=".ui.activities.EditThemeActivity" />
+        <activity android:name=".ui.activities.WallpaperActivity" />
 
+        <service
+            android:name=".core.wallpaper.KatachiWallpaperService"
+            android:enabled="true"
+            android:label="@string/service_name"
+            android:permission="android.permission.BIND_WALLPAPER">
+            <intent-filter>
+                <action android:name="android.service.wallpaper.WallpaperService" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.service.wallpaper"
+                android:resource="@xml/wallpaper" />
+        </service>
     </application>
 
 </manifest>

@@ -2,6 +2,7 @@ package com.judas.katachi.utils.view;
 
 import android.app.Activity;
 import android.content.Context;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
@@ -21,5 +22,13 @@ public final class ViewUtils {
 
     public static void showSnackbar(@NonNull final Activity activity, @StringRes final int message) {
         Snackbar.make(activity.findViewById(android.R.id.content), message, Snackbar.LENGTH_SHORT).show();
+    }
+
+    public static void showToast(@NonNull final Context context, @StringRes final int message) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+    }
+
+    public static void showToast(@NonNull final Context context, final String message) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
 }

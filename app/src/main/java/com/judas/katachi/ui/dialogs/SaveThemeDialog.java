@@ -16,7 +16,7 @@ import static com.judas.katachi.utils.log.Logger.log;
 
 public class SaveThemeDialog extends AlertDialog {
     public interface Listener {
-        void onThemeSaved(final String title);
+        void onThemeSaved(String title);
     }
 
     private static final String TAG = SaveThemeDialog.class.getSimpleName();
@@ -29,7 +29,7 @@ public class SaveThemeDialog extends AlertDialog {
         final LayoutInflater inflater = LayoutInflater.from(builder.context);
         final View root = inflater.inflate(R.layout.theme_save_dialog, null);
         setView(root);
-        setTitle(R.string.edit_menu_save);
+        setTitle(R.string.menu_save);
 
         setButton(BUTTON_POSITIVE, builder.context.getString(android.R.string.ok), (dialog, which) -> {
             // Keep empty
@@ -60,10 +60,10 @@ public class SaveThemeDialog extends AlertDialog {
     }
 
     public static class Builder {
-        private Context context;
+        private final Context context;
         private Listener listener;
 
-        public static Builder saveThemDialog(final Context context) {
+        public static Builder saveThemeDialog(final Context context) {
             return new Builder(context);
         }
 
