@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.widget.ProgressBar;
 
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.button.MaterialButton;
@@ -15,7 +14,6 @@ import static android.content.Intent.ACTION_OPEN_DOCUMENT;
 import static android.content.Intent.CATEGORY_OPENABLE;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
-import static com.judas.katachi.BuildConfig.VERSION_NAME;
 import static com.judas.katachi.utils.log.Logger.Level.DEBUG;
 import static com.judas.katachi.utils.log.Logger.Level.ERROR;
 import static com.judas.katachi.utils.log.Logger.log;
@@ -47,7 +45,7 @@ public class HomeActivity extends AppCompatActivity {
 
         progress = findViewById(R.id.progress);
 
-        findViewById(R.id.about).setOnClickListener(v -> showAboutDialog());
+        findViewById(R.id.about).setOnClickListener(v -> AboutActivity.start(this));
 
         setLoading(false);
     }
@@ -92,17 +90,5 @@ public class HomeActivity extends AppCompatActivity {
     private void openThemeEditing() {
         log(DEBUG, TAG, "openThemeEditing");
         EditThemeActivity.start(this);
-    }
-
-    private void showAboutDialog() {
-        log(DEBUG, TAG, "showAboutDialog");
-
-        final String about = getString(R.string.about_message, VERSION_NAME);
-        new AlertDialog.Builder(this)
-                .setMessage(about)
-                .setPositiveButton(android.R.string.ok, (dialog, which) -> {
-                    // Keep empty
-                })
-                .show();
     }
 }

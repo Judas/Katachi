@@ -26,6 +26,7 @@
 
         <activity android:name=".ui.activities.SgfToPngActivity" />
         <activity android:name=".ui.activities.EditThemeActivity" />
+        <activity android:name=".ui.activities.AboutActivity" />
         <activity android:name=".ui.activities.WallpaperActivity" />
 
         <service

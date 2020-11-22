@@ -5,7 +5,10 @@
     <string name="sgf_to_png">SGF file to PNG</string>
     <string name="wallpaper">Joseki live wallpaper</string>
     <string name="edit_themes">Edit themes</string>
-    <string name="about_message">Version %s\n\nMade with love by Jules Tréhorel (KGS: Judas).\n\nThis app uses 3rd party libraries:\n- SGF4J\n- BubbleSeekBar\n- GSON\n\nThe joseki played in the live wallpaper are from Kogo\'s Joseki Dictionary.\n\nCode is available on Github (https://github.com/Judas/Katachi)</string>
+    <string name="about_version">Version %s</string>
+    <string name="about_author">Made with love by Jules Tréhorel\nKGS: Judas\nOGS: _Judas_</string>
+    <string name="about_licenses">This app uses 3rd party libraries:\n- SGF4J\n- BubbleSeekBar\n- GSON\n- Retrofit\n- OkHttp3\n- RxAndroid / RxJava</string>
+    <string name="about_content">Josekis are from Kogo\'s Joseki Dictionary https://waterfire.us/joseki.htm.\n\nPro games are available thanks to the courtesy of Go4Go https://www.go4go.net/go/ .\n\nCode is available on Github https://github.com/Judas/Katachi.</string>
 
     <string name="menu_themes">Themes</string>
     <string name="menu_save">Save theme</string>
