@@ -3,7 +3,7 @@
     <string name="app_headline">Pimp your SGF</string>
 
     <string name="sgf_to_png">SGF file to PNG</string>
-    <string name="wallpaper">Joseki live wallpaper</string>
+    <string name="wallpaper">Live wallpaper</string>
     <string name="edit_themes">Edit themes</string>
     <string name="about_version">Version %s</string>
     <string name="about_author">Made with love by Jules Tréhorel\nKGS: Judas\nOGS: _Judas_</string>
@@ -44,12 +44,13 @@
     <string name="theme_title">Title</string>
     <string name="theme_title_required">Please enter the theme title</string>
 
-    <string name="wallpaper_description">The live wallpaper cycles randomly through a joseki dictionnary and plays them.</string>
     <string name="wallpaper_failure">Error while drawing wallpaper</string>
     <string name="wallpaper_submit">Set as wallpaper</string>
     <string name="move_speed">Move speed (sec)</string>
     <string name="end_delay">End delay (sec)</string>
     <string name="theme">Theme</string>
-
+    <string name="wallpaper_content">Content</string>
+    <string name="wallpaper_content_joseki">Joseki</string>
+    <string name="wallpaper_content_pro_games">Pro games</string>
 
 </resources>

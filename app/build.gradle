@@ -12,6 +12,8 @@ android {
         versionCode 3
 
         setProperty('archivesBaseName', 'katachi-' + versionName + '(' + versionCode + ')')
+
+        buildConfigField 'String', 'GO4GO_ENDPOINT', '"<GO4GO_API_ENDPOINT>"'
     }
 
     compileOptions {
@@ -56,10 +58,13 @@ dependencies {
     // SGF
     implementation project(path: ':sgj4j-fork')
 
-    // GSON
+    // RX / Retrofit  / GSON
+    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
     implementation 'com.google.code.gson:gson:2.8.6'
-
-    // RX
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava3:2.9.0'
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
     implementation 'io.reactivex.rxjava3:rxjava:3.0.6'
 }

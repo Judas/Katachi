@@ -64,10 +64,6 @@ public class BoardDrawer {
         this.height = height;
     }
 
-    public VirtualBoard getBoard() {
-        return board;
-    }
-
     public void setBoard(final VirtualBoard board) {
         this.board = board;
     }

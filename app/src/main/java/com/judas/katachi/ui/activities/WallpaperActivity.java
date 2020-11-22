@@ -4,7 +4,9 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatTextView;
 
 import com.google.android.material.appbar.MaterialToolbar;
@@ -12,7 +14,11 @@ import com.judas.katachi.R;
 import com.judas.katachi.core.prefs.PreferenceHelper;
 import com.judas.katachi.core.theme.KatachiTheme;
 import com.judas.katachi.core.wallpaper.KatachiWallpaperService;
+import com.judas.katachi.core.wallpaper.WallpaperContent;
 import com.xw.repo.BubbleSeekBar;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static android.app.WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER;
 import static android.app.WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT;
@@ -21,6 +27,10 @@ import static com.judas.katachi.utils.log.Logger.Level.DEBUG;
 import static com.judas.katachi.utils.log.Logger.log;
 
 public class WallpaperActivity extends BoardActivity {
+    public interface OnContentSelectedListener {
+        void onContentSelected(WallpaperContent content);
+    }
+
     private static final String TAG = WallpaperActivity.class.getSimpleName();
 
     public static void start(final Context context) {
@@ -82,6 +92,15 @@ public class WallpaperActivity extends BoardActivity {
             prefs.setWallpaperTheme(theme);
         }));
 
+        // Theme
+        final WallpaperContent currentContent = prefs.getWallPaperContent();
+        final AppCompatTextView contentPicker = findViewById(R.id.content_picker);
+        contentPicker.setText(currentContent.label(this));
+        contentPicker.setOnClickListener(v -> showContentDialog(content -> {
+            contentPicker.setText(content.label(this));
+            prefs.setWallpaperContent(content);
+        }));
+
         // Submit button
         findViewById(R.id.wallpaper_submit).setOnClickListener(v -> {
             final Intent intent = new Intent(ACTION_CHANGE_LIVE_WALLPAPER);
@@ -90,5 +109,29 @@ public class WallpaperActivity extends BoardActivity {
         });
 
         loadDefaultGame(currentTheme);
+    }
+
+    protected void showContentDialog(final OnContentSelectedListener listener) {
+        log(DEBUG, TAG, "showContentDialog");
+
+        final List<WallpaperContent> contents = new ArrayList<>();
+        final List<String> contentNames = new ArrayList<>();
+        for (final WallpaperContent c : WallpaperContent.values()) {
+            contents.add(c);
+            contentNames.add(c.label(this));
+        }
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, contentNames);
+
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.wallpaper_content)
+                .setAdapter(adapter, (dialog, which) -> {
+                    final int index = contentNames.indexOf(adapter.getItem(which));
+                    final WallpaperContent content = contents.get(index);
+                    if (listener != null) {
+                        listener.onContentSelected(content);
+                    }
+                    dialog.dismiss();
+                })
+                .show();
     }
 }

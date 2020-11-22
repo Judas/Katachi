@@ -33,14 +33,6 @@
             android:paddingTop="@dimen/status_bar_offset"
             app:navigationIconColor="@color/sun" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            style="@style/TextMedium"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:text="@string/wallpaper_description"
-            android:textColor="@color/textSecondaryInverse" />
-
         <com.judas.katachi.ui.views.BoardView
             android:id="@+id/wallpaper_preview"
             android:layout_width="match_parent"

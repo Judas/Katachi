@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name" translatable="false">Katachi</string>
-    <string name="service_name" translatable="false">Joseki live wallpaper</string>
+    <string name="service_name" translatable="false">Katachi live wallpaper</string>
 </resources>

@@ -71,8 +71,8 @@
             android:textColor="@color/textPrimaryInverse" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            style="@style/TextMedium"
             android:id="@+id/theme_picker"
+            style="@style/TextMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -81,5 +81,31 @@
             android:gravity="end"
             android:textColor="@color/sun"
             tools:text="Classic" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/TextBold"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@string/wallpaper_content"
+            android:textColor="@color/textPrimaryInverse" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/content_picker"
+            style="@style/TextMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:gravity="end"
+            android:textColor="@color/sun"
+            tools:text="Joseki" />
     </LinearLayout>
 </LinearLayout>
