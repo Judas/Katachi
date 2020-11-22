@@ -8,8 +8,8 @@ android {
         targetSdkVersion 30
 
         applicationId 'com.judas.katachi'
-        versionName '1.2'
-        versionCode 3
+        versionName '1.3'
+        versionCode 4
 
         setProperty('archivesBaseName', 'katachi-' + versionName + '(' + versionCode + ')')
 

@@ -3,7 +3,7 @@
 
 **Katachi** is a simple Android application that lets you export your **SGF files to PNG images**, allowing some visual customization along the way.
 
-It also contains a **live wallpaper** that plays **joseki sequences** at random.
+It also contains a **live wallpaper** that plays **joseki sequences** at random or recent **pro games**.
 
 ## Screenshots
 ![screenshot](https://github.com/Judas/Katachi/blob/master/screenshots/screenshot.png)
@@ -14,9 +14,15 @@ The application is available on [Google Play](https://play.google.com/store/apps
 ## Dependencies
 This project is strongnly based on the [SGF4J](https://github.com/toomasr/sgf4j) library for parsing SGF files.
 
-[BubbleSeekBar](https://github.com/woxingxiao/BubbleSeekBar) 
-
 The joseki sequences played are extracted from [Kogo's Joseki Dictionary](https://waterfire.us/joseki.htm).
+
+The pro games played are read from [Go4Go pro game database](https://www.go4go.net/go/). Many thanks to them for allowing this app to use their database.
+
+```
+Copyright © 1999-2019 Go4Go.net - All Rights Reserved
+```
+
+[BubbleSeekBar](https://github.com/woxingxiao/BubbleSeekBar) 
 
 ## License
 ```
