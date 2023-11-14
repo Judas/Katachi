@@ -62,6 +62,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":sgf4k"))
+
     implementation(Dependencies.Library.androidxAppCompat)
     implementation(Dependencies.Library.colorPicker)
     implementation(Dependencies.Library.gson)

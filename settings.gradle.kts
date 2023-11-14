@@ -1,2 +1,2 @@
-include(":sgj4j-fork")
+include(":sgf4k")
 include(":app")

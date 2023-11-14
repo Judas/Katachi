@@ -1,0 +1,3 @@
+[submodule "sgf4k"]
+	path = sgf4k
+	url = git@github.com:Judas/sgf4k.git
