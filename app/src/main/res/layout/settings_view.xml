@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingVertical="4dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextBold"
+                android:layout_width="164dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="@string/config_move_speed" />
+
+            <com.xw.repo.BubbleSeekBar
+                android:id="@+id/move_speed_picker"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:bsb_is_float_type="true"
+                app:bsb_show_progress_in_float="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingVertical="4dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextBold"
+                android:layout_width="164dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="@string/config_content" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/content_picker"
+                style="@style/TextMedium"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                tools:text="Joseki" />
+        </LinearLayout>
+
+        <include
+            android:id="@+id/background_picker"
+            layout="@layout/settings_color_view" />
+
+        <include
+            android:id="@+id/lines_color_picker"
+            layout="@layout/settings_color_view" />
+
+        <include
+            android:id="@+id/black_stones_color_picker"
+            layout="@layout/settings_color_view" />
+
+        <include
+            android:id="@+id/black_stones_border_color_picker"
+            layout="@layout/settings_color_view" />
+
+        <include
+            android:id="@+id/white_stones_color_picker"
+            layout="@layout/settings_color_view" />
+
+        <include
+            android:id="@+id/white_stones_border_color_picker"
+            layout="@layout/settings_color_view" />
+    </LinearLayout>
+</ScrollView>

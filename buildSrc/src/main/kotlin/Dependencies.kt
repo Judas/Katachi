@@ -6,8 +6,12 @@ object Dependencies {
 
     object Library {
         const val androidxAppCompat = "androidx.appcompat:appcompat:${Versions.androidxAppCompat}"
+        const val androidxConstraintLayout =
+            "androidx.constraintlayout:constraintlayout:${Versions.androidxConstraintLayout}"
+        const val bubbleSeekBar = "com.xw.repo:bubbleseekbar:${Versions.bubbleSeekBar}"
         const val colorPicker = "com.github.QuadFlask:colorpicker:${Versions.colorPicker}"
         const val gson = "com.google.code.gson:gson:${Versions.gson}"
+        const val insetter = "dev.chrisbanes.insetter:insetter:${Versions.insetter}"
         const val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
         const val kotlinCoroutines =
             "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.kotlinCoroutines}"

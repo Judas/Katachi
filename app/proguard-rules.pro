@@ -1,16 +1,12 @@
-# GLOBAL
 -printmapping out.map
 -keepparameternames
--keepattributes *Annotation*,EnclosingMethod,SourceFile,LineNumberTable,Signature,InnerClasses,Deprecated,Exceptions,RuntimeVisibleParameterAnnotations
 -renamesourcefileattribute SourceFile
+-keepattributes *Annotation*,EnclosingMethod,SourceFile,LineNumberTable,Signature,InnerClasses,Deprecated,Exceptions,RuntimeVisibleParameterAnnotations
 -optimizations !class/unboxing/enum
-
 -dontnote
--dontwarn **
 
 # Preserve enumeration classes.
 -keepclassmembers class * extends java.lang.Enum {
-    <fields>;
     public static **[] values();
     public static ** valueOf(java.lang.String);
 }
@@ -31,18 +27,36 @@
     public static *** v(...);
 }
 
-# PARCELABLE
--keepclassmembers class * implements android.os.Parcelable {
-    public static final android.os.Parcelable$Creator *;
-}
+# Kotlin serialization
+-dontwarn kotlinx.serialization
+-dontwarn java.lang.invoke.StringConcatFactory
 
-# NoSuchMethodError while calling parse(String, ParsePosition) on Xiaomi devices (either Android 4, 5 or 6)
--keepnames class org.apache.** { *; }
+# Preserve Parcelable classes
+-keep @kotlinx.parcelize.Parcelize class *
 
-# GSON
--dontwarn sun.misc.**
-# Prevent R8 from leaving Data object members always null
--keep,allowobfuscation @interface com.google.gson.annotations.SerializedName
+# GSON x AGP 8.0
 -keepclassmembers,allowobfuscation class * {
   @com.google.gson.annotations.SerializedName <fields>;
+}
+-keep class * {
+  @com.google.gson.annotations.SerializedName <fields>;
+}
+-if class *
+-keepclasseswithmembers class <1> {
+    <init>(...);
+    @com.google.gson.annotations.SerializedName <fields>;
+}
+
+# OKHTTP
+-dontwarn okhttp3.**
+-dontwarn okio.**
+-keep class okhttp3.** { *; }
+-keep interface okhttp3.** { *; }
+-keepnames class okhttp3.internal.publicsuffix.PublicSuffixDatabase
+
+# Annotations
+-dontwarn javax.annotation.**
+-dontwarn org.conscrypt.**
+-keepclassmembernames class kotlinx.** {
+    volatile <fields>;
 }

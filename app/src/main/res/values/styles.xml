@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Text -->
-
     <style name="TextViewStyle" parent="@android:style/TextAppearance.Widget.TextView">
         <item name="android:textAppearance">@style/TextMedium</item>
     </style>
@@ -19,40 +17,4 @@
         <item name="fontFamily">@font/quicksand_bold</item>
     </style>
 
-    <!-- Button -->
-
-    <style name="DefaultButton" parent="@style/Widget.MaterialComponents.Button">
-        <item name="android:layout_width">240dp</item>
-        <item name="android:layout_height">56dp</item>
-        <item name="android:textAllCaps">false</item>
-        <item name="android:textAppearance">@style/TextMedium</item>
-        <item name="android:textColor">@color/textPrimary</item>
-        <item name="android:textSize">18sp</item>
-        <item name="backgroundTint">@color/sun</item>
-        <item name="cornerRadius">4dp</item>
-    </style>
-
-    <!-- Snackbars -->
-
-    <style name="Snackbar" parent="@style/Widget.MaterialComponents.Snackbar">
-        <item name="android:backgroundTint">@color/textPrimary</item>
-        <item name="actionTextColorAlpha">1</item>
-    </style>
-
-    <style name="SnackbarButton" parent="@style/Widget.MaterialComponents.Button.TextButton.Snackbar">
-        <item name="android:textColor">@color/sun</item>
-        <item name="android:textAppearance">@style/TextMedium</item>
-        <item name="android:textAllCaps">true</item>
-    </style>
-
-    <style name="SnackbarText" parent="@style/Widget.MaterialComponents.Snackbar.TextView">
-        <item name="android:textColor">@color/textPrimaryInverse</item>
-        <item name="android:textAppearance">@style/TextMedium</item>
-    </style>
-
-    <!-- Dialog -->
-
-    <style name="AlertDialog" parent="@style/Theme.MaterialComponents.Light.Dialog.Alert">
-        <item name="colorPrimary">@color/sun</item>
-    </style>
 </resources>

@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     id(Plugins.androidApp)
     id(Plugins.kotlin)
@@ -19,11 +21,17 @@ android {
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled = true
 
-        buildConfigField("String", "GO4GO_ENDPOINT", "<GO4GO_API_ENDPOINT>")
+        buildConfigField(
+            "String",
+            "GO4GO_ENDPOINT",
+            gradleLocalProperties(rootDir).getProperty("go4goEndpoint")
+        )
     }
 
     buildFeatures {
         buildConfig = true
+        viewBinding = true
+        dataBinding = true
     }
 
     compileOptions {
@@ -43,10 +51,10 @@ android {
 
     signingConfigs {
         create("keystoreConfig") {
-            keyAlias = "key-alias"
-            keyPassword = "<KEYSTORE_ALIAS_PASSWORD>"
-            storeFile = file("katachi.jks")
-            storePassword = "<KEYSTORE_PASSWORD>"
+            keyAlias = gradleLocalProperties(rootDir).getProperty("keyAlias")
+            keyPassword = gradleLocalProperties(rootDir).getProperty("keyPassword")
+            storeFile = file(gradleLocalProperties(rootDir).getProperty("storeFile"))
+            storePassword = gradleLocalProperties(rootDir).getProperty("storePassword")
         }
     }
 
@@ -65,8 +73,11 @@ dependencies {
     implementation(project(":sgf4k"))
 
     implementation(Dependencies.Library.androidxAppCompat)
+    implementation(Dependencies.Library.androidxConstraintLayout)
+    implementation(Dependencies.Library.bubbleSeekBar)
     implementation(Dependencies.Library.colorPicker)
     implementation(Dependencies.Library.gson)
+    implementation(Dependencies.Library.insetter)
     implementation(Dependencies.Library.kotlinStdlib)
     implementation(Dependencies.Library.kotlinCoroutines)
     implementation(Dependencies.Library.material)

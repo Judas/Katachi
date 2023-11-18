@@ -1,27 +1,17 @@
 <resources>
 
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="colorPrimary">@color/big_stone</item>
-        <item name="colorPrimaryVariant">@color/fiord</item>
-        <item name="colorOnPrimary">@color/textPrimaryInverse</item>
+    <style name="AppTheme" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">@color/sun</item>
+        <item name="colorOnPrimary">@color/big_stone</item>
+        <item name="colorPrimaryContainer">@color/sun</item>
+        <item name="colorOnPrimaryContainer">@color/big_stone</item>
+        <item name="android:colorBackground">@color/big_stone</item>
+        <item name="colorOnBackground">@color/sun</item>
+        <item name="colorSurface">@color/big_stone</item>
+        <item name="colorOnSurface">@color/sun</item>
 
-        <item name="colorSecondary">@color/sun</item>
-        <item name="colorSecondaryVariant">@color/mustard</item>
-        <item name="colorOnSecondary">@color/textPrimary</item>
-
-        <item name="colorError">@color/carnation</item>
-        <item name="colorOnError">@color/textPrimaryInverse</item>
-
-        <item name="colorSurface">@android:color/white</item>
-        <item name="colorOnSurface">@color/textPrimary</item>
-        <item name="colorControlNormal">@color/sun</item>
-
-        <item name="android:windowBackground">@color/textPrimaryInverse</item>
         <item name="android:windowTranslucentStatus">true</item>
-
         <item name="android:textViewStyle">@style/TextViewStyle</item>
-        <item name="snackbarStyle">@style/Snackbar</item>
-        <item name="snackbarButtonStyle">@style/SnackbarButton</item>
-        <item name="snackbarTextViewStyle">@style/SnackbarText</item>
     </style>
+
 </resources>
