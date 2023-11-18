@@ -9,6 +9,6 @@ object AppConfig {
 
     const val namespace = "com.judas.katachi"
     const val applicationId = "com.judas.katachi"
-    const val versionName = "1.3"
-    const val versionCode = 4
+    const val versionName = "2.0"
+    const val versionCode = 5
 }
