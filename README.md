@@ -28,6 +28,11 @@ to them for allowing this app to use their database.
 Copyright © 1999-2019 Go4Go.net - All Rights Reserved
 ```
 
+## Privacy
+
+This app does not store any data whatsoever. Code is available to check that but I need to specify it 
+here so that the app can be published on the Play Store.
+
 ## License
 
 ```
