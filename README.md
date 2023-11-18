@@ -1,30 +1,35 @@
 # Katachi
+
 ![logo](https://github.com/Judas/Katachi/blob/master/app/src/main/res/mipmap-xxhdpi/ic_launcher.png)
 
-**Katachi** is a simple Android application that lets you export your **SGF files to PNG images**, allowing some visual customization along the way.
-
-It also contains a **live wallpaper** that plays **joseki sequences** at random or recent **pro games**.
+**Katachi** is an Android live wallpaper displaying go games.
 
 ## Screenshots
-![screenshot](https://github.com/Judas/Katachi/blob/master/screenshots/screenshot.png)
+
+![screenshot](https://github.com/Judas/Katachi/blob/master/screenshots/screenshots.png)
 
 ## Download
-The application is available on [Google Play](https://play.google.com/store/apps/details?id=com.judas.katachi)
+
+The application is available on
+[Google Play](https://play.google.com/store/apps/details?id=com.judas.katachi)
 
 ## Dependencies
-This project is strongnly based on the [SGF4J](https://github.com/toomasr/sgf4j) library for parsing SGF files.
 
-The joseki sequences played are extracted from [Kogo's Joseki Dictionary](https://waterfire.us/joseki.htm).
+This project is strongnly based on the [SGF4K](https://github.com/Judas/sgf4k) library for parsing
+SGF files, itself being mainly inspired by [SGF4J](https://github.com/toomasr/sgf4j).
 
-The pro games played are read from [Go4Go pro game database](https://www.go4go.net/go/). Many thanks to them for allowing this app to use their database.
+The joseki sequences played are extracted from
+[Kogo's Joseki Dictionary](https://waterfire.us/joseki.htm).
+
+The pro games played are read from [Go4Go pro game database](https://www.go4go.net/go/). Many thanks
+to them for allowing this app to use their database.
 
 ```
 Copyright © 1999-2019 Go4Go.net - All Rights Reserved
 ```
 
-[BubbleSeekBar](https://github.com/woxingxiao/BubbleSeekBar) 
-
 ## License
+
 ```
    Copyright 2020 Jules Tréhorel
 

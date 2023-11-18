@@ -1,26 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="big_stone">#14213D</color>
-    <color name="fiord">#3E4868</color>
-
     <color name="sun">#FCA311</color>
-    <color name="mustard">#FFD44F</color>
-    <color name="mustard_alpha">#50FFD44F</color>
-
-
-    <color name="carnation">#F75056</color>
-
-    <!-- Text / Backgrounds colors -->
-    <color name="textPrimary">#000000</color>
-    <color name="textSecondary">#8A000000</color>
-    <color name="textTertiary">#73000000</color>
-    <color name="textDisabled">#50000000</color>
-    <color name="textWatermark">#1A000000</color>
-
-    <color name="textPrimaryInverse">#E5E5E5</color>
-    <color name="textSecondaryInverse">#8AE5E5E5</color>
-    <color name="textTertiaryInverse">#73E5E5E5</color>
-    <color name="textDisabledInverse">#50E5E5E5</color>
-    <color name="textWatermarkInverse">#1AE5E5E5</color>
-
+    <color name="big_stone">#001849</color>
 </resources>
