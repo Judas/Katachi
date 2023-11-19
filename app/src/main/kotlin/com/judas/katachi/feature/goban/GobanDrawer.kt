@@ -25,11 +25,13 @@ class GobanDrawer(context: Context, val goban: Goban, theme: Theme) {
         try {
             val vMargin = max(0f, (height - width) / 2)
             val hMargin = max(0f, (width - height) / 2)
-            val bgSize = width - 2 * hMargin
+            val fullWidth = width - 2 * hMargin
+            val gobanPadding = (fullWidth / goban.size) / 2
+            val bgSize = fullWidth - 2 * gobanPadding
 
             // Draw goban background
-            bgRect.set(0f, 0f, bgSize, bgSize)
-            canvas.translate(hMargin, vMargin)
+            bgRect.set(0f, 0f, fullWidth, fullWidth)
+            canvas.translate(hMargin + gobanPadding, vMargin + gobanPadding)
             canvas.drawRect(bgRect, themePaints.backgroundPaint)
 
             // Draw goban lines
