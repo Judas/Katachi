@@ -80,5 +80,28 @@
         <include
             android:id="@+id/white_stones_border_color_picker"
             layout="@layout/settings_color_view" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingVertical="4dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextBold"
+                android:layout_width="164dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="@string/config_theme_highlight" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/highlight_picker"
+                style="@style/TextMedium"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                tools:text="Circle" />
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>

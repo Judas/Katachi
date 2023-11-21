@@ -16,8 +16,8 @@ import com.flask.colorpicker.builder.ColorPickerDialogBuilder
 import com.judas.katachi.R
 import com.judas.katachi.databinding.ConfigurationFragmentBinding
 import com.judas.katachi.databinding.ThemeChipBinding
+import com.judas.katachi.feature.configuration.theme.Theme
 import com.judas.katachi.feature.goban.GobanDrawer
-import com.judas.katachi.feature.theme.Theme
 import com.judas.katachi.utility.Logger.Level.DEBUG
 import com.judas.katachi.utility.log
 import com.judas.katachi.utility.readFileFrom
@@ -87,6 +87,7 @@ class ConfigurationFragment : Fragment() {
                 viewModel.blackStoneBorderColor = theme.blackStoneBorderColor
                 viewModel.whiteStoneColor = theme.whiteStoneColor
                 viewModel.whiteStoneBorderColor = theme.whiteStoneBorderColor
+                viewModel.highlight = theme.highlight
             }
         }
     }
@@ -145,6 +146,12 @@ class ConfigurationFragment : Fragment() {
                     }
                 }
             }
+
+            highlightPicker.text = viewModel.highlight.name
+                .let { it[0].uppercase() + it.substring(1).lowercase() }
+            highlightPicker.setOnClickListener {
+                showHighlightDialog { highlight -> viewModel.highlight = highlight }
+            }
         }
     }
 
@@ -176,6 +183,9 @@ class ConfigurationFragment : Fragment() {
                 whiteStonesColorPicker to theme.whiteStoneColor,
                 whiteStonesBorderColorPicker to theme.whiteStoneBorderColor
             ).forEach { it.key.colorPicker.imageTintList = ColorStateList.valueOf(it.value) }
+
+            highlightPicker.text = viewModel.highlight.name
+                .let { it[0].uppercase() + it.substring(1).lowercase() }
         }
     }
 
@@ -207,6 +217,20 @@ class ConfigurationFragment : Fragment() {
             }
             .setNegativeButton(android.R.string.cancel) { _, _ -> }
             .build()
+            .show()
+    }
+
+    private fun showHighlightDialog(listener: (Highlight) -> Unit) {
+        log(DEBUG, "showHighlightDialog")
+
+        val highlightLabels = Highlight.values()
+            .map { it.name }
+            .map { it[0].uppercase() + it.substring(1).lowercase() }
+            .toTypedArray()
+
+        AlertDialog.Builder(requireContext())
+            .setItems(highlightLabels) { _, index -> listener.invoke(Highlight.values()[index]) }
+            .create()
             .show()
     }
 

@@ -10,9 +10,9 @@ import com.judas.katachi.R
 import com.judas.katachi.feature.api.ProGamesApi
 import com.judas.katachi.feature.api.model.ProGame
 import com.judas.katachi.feature.configuration.ConfigurationRepository
+import com.judas.katachi.feature.configuration.theme.Theme
+import com.judas.katachi.feature.configuration.theme.toPaints
 import com.judas.katachi.feature.goban.GobanDrawer
-import com.judas.katachi.feature.theme.Theme
-import com.judas.katachi.feature.theme.toPaints
 import com.judas.katachi.utility.Logger.Level.DEBUG
 import com.judas.katachi.utility.Logger.Level.ERROR
 import com.judas.katachi.utility.dpToPx
@@ -169,6 +169,7 @@ class KatachiWallpaperService : WallpaperService() {
                     blackStoneBorderColor = it.blackStoneBorderColor,
                     whiteStoneColor = it.whiteStoneColor,
                     whiteStoneBorderColor = it.whiteStoneBorderColor,
+                    highlight = it.highlight
                 )
                 moveSpeed = it.moveSpeed
                 playJoseki = it.playJoseki

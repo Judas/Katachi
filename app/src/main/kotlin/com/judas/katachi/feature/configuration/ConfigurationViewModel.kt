@@ -2,7 +2,7 @@ package com.judas.katachi.feature.configuration
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.judas.katachi.feature.theme.Theme
+import com.judas.katachi.feature.configuration.theme.Theme
 import com.judas.katachi.utility.Logger.Level.VERBOSE
 import com.judas.katachi.utility.log
 
@@ -77,6 +77,14 @@ class ConfigurationViewModel : ViewModel() {
             refreshTheme()
         }
 
+    // Highlight
+    var highlight: Highlight
+        get() = configurationRepository.highlight
+        set(value) {
+            configurationRepository.highlight = value
+            refreshTheme()
+        }
+
     fun clear() {
         log(VERBOSE, "clear")
         configurationRepository.clear()
@@ -101,6 +109,7 @@ class ConfigurationViewModel : ViewModel() {
             blackStoneBorderColor = blackStoneBorderColor,
             whiteStoneColor = whiteStoneColor,
             whiteStoneBorderColor = whiteStoneBorderColor,
+            highlight = highlight
         )
     }
 }

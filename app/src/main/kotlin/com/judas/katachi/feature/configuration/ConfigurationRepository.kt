@@ -1,6 +1,6 @@
 package com.judas.katachi.feature.configuration
 
-import com.judas.katachi.feature.theme.Theme
+import com.judas.katachi.feature.configuration.theme.Theme
 import com.judas.katachi.utility.prefReader
 import com.judas.katachi.utility.prefWriter
 
@@ -22,6 +22,9 @@ class ConfigurationRepository {
         private const val KEY_WHITE_STONE_COLOR = "white-stone-color"
         private const val KEY_WHITE_BORDER_COLOR = "white-border-color"
 
+        // Highlight
+        private const val KEY_HIGHLIGHT = "highlight"
+
         private val keys = listOf(
             KEY_MOVE_SPEED,
             KEY_JOSEKI,
@@ -30,7 +33,8 @@ class ConfigurationRepository {
             KEY_BLACK_STONE_COLOR,
             KEY_BLACK_BORDER_COLOR,
             KEY_WHITE_STONE_COLOR,
-            KEY_WHITE_BORDER_COLOR
+            KEY_WHITE_BORDER_COLOR,
+            KEY_HIGHLIGHT
         )
     }
 
@@ -75,4 +79,10 @@ class ConfigurationRepository {
     var whiteStoneBorderColor: Int
         get() = prefReader().getInt(KEY_WHITE_BORDER_COLOR, Theme.Classic.whiteStoneBorderColor)
         set(value) = prefWriter().putInt(KEY_WHITE_BORDER_COLOR, value).apply()
+
+    // Highlight
+
+    var highlight: Highlight
+        get() = Highlight.values()[prefReader().getInt(KEY_HIGHLIGHT, 0)]
+        set(value) = prefWriter().putInt(KEY_HIGHLIGHT, value.ordinal).apply()
 }

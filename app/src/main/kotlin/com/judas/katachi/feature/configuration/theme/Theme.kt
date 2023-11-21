@@ -1,9 +1,12 @@
-package com.judas.katachi.feature.theme
+package com.judas.katachi.feature.configuration.theme
 
 import android.graphics.Color
 import android.graphics.Color.BLACK
 import android.graphics.Color.TRANSPARENT
 import android.graphics.Color.WHITE
+import com.judas.katachi.feature.configuration.Highlight
+import com.judas.katachi.feature.configuration.Highlight.CIRCLE
+import com.judas.katachi.feature.configuration.Highlight.OPACITY
 
 open class Theme(
     val backgroundColor: Int,
@@ -11,7 +14,8 @@ open class Theme(
     val blackStoneColor: Int,
     val blackStoneBorderColor: Int,
     val whiteStoneColor: Int,
-    val whiteStoneBorderColor: Int
+    val whiteStoneBorderColor: Int,
+    val highlight: Highlight
 ) {
     fun textColor(): Int =
         if (lineColor != TRANSPARENT && lineColor != backgroundColor) lineColor
@@ -29,7 +33,8 @@ open class Theme(
         blackStoneColor = BLACK,
         blackStoneBorderColor = BLACK,
         whiteStoneColor = WHITE,
-        whiteStoneBorderColor = BLACK
+        whiteStoneBorderColor = BLACK,
+        highlight = CIRCLE
     )
 
     data object Paper : Theme(
@@ -38,16 +43,18 @@ open class Theme(
         blackStoneColor = 0xFF0C0C0C.toInt(),
         blackStoneBorderColor = 0xFF0C0C0C.toInt(),
         whiteStoneColor = 0xFFF4F4F4.toInt(),
-        whiteStoneBorderColor = 0xFF0C0C0C.toInt()
+        whiteStoneBorderColor = 0xFF0C0C0C.toInt(),
+        highlight = CIRCLE
     )
 
     data object Cosmic : Theme(
         backgroundColor = 0xFF212529.toInt(),
         lineColor = TRANSPARENT,
         blackStoneColor = 0xFF212529.toInt(),
-        blackStoneBorderColor = 0xFFCED4DA.toInt(),
-        whiteStoneColor = 0xFFCED4DA.toInt(),
-        whiteStoneBorderColor = 0xFFCED4DA.toInt(),
+        blackStoneBorderColor = 0xFFF4F4F4.toInt(),
+        whiteStoneColor = 0xFFF4F4F4.toInt(),
+        whiteStoneBorderColor = 0xFFF4F4F4.toInt(),
+        highlight = OPACITY
     )
 
     data object Katachi : Theme(
@@ -56,6 +63,7 @@ open class Theme(
         blackStoneColor = 0xFF001849.toInt(),
         blackStoneBorderColor = 0xFFFCA311.toInt(),
         whiteStoneColor = 0xFFFCA311.toInt(),
-        whiteStoneBorderColor = 0xFFFCA311.toInt()
+        whiteStoneBorderColor = 0xFFFCA311.toInt(),
+        highlight = CIRCLE
     )
 }

@@ -1,4 +1,4 @@
-package com.judas.katachi.feature.theme
+package com.judas.katachi.feature.configuration.theme
 
 import android.content.Context
 import android.graphics.Paint
@@ -7,6 +7,8 @@ import android.graphics.Paint.Join.MITER
 import android.graphics.Paint.Style.FILL
 import android.graphics.Paint.Style.STROKE
 import androidx.annotation.ColorInt
+import androidx.annotation.IntRange
+import androidx.core.graphics.ColorUtils
 import com.judas.katachi.utility.dpToPx
 import com.judas.sgf4k.feature.interpreter.IntersectionState
 import com.judas.sgf4k.feature.interpreter.IntersectionState.BLACK
@@ -36,13 +38,13 @@ class ThemePaints(
 
 fun Theme.toPaints(context: Context): ThemePaints = ThemePaints(
     backgroundPaint = fillPaint(backgroundColor),
-    linePaint = strokePaint(lineColor, context),
+    linePaint = strokePaint(context, lineColor),
     starPaint = fillPaint(lineColor),
     blackStonePaint = fillPaint(blackStoneColor),
-    blackStoneBorderPaint = strokePaint(blackStoneBorderColor, context),
+    blackStoneBorderPaint = strokePaint(context, blackStoneBorderColor),
     blackHighlightPaint = fillPaint(whiteStoneColor),
     whiteStonePaint = fillPaint(whiteStoneColor),
-    whiteStoneBorderPaint = strokePaint(whiteStoneBorderColor, context),
+    whiteStoneBorderPaint = strokePaint(context, whiteStoneBorderColor),
     whiteHighlightPaint = fillPaint(blackStoneColor)
 )
 
@@ -52,10 +54,16 @@ private fun fillPaint(@ColorInt colorInt: Int): Paint =
         color = colorInt
     }
 
-private fun strokePaint(@ColorInt colorInt: Int, context: Context): Paint =
+private fun strokePaint(context: Context, @ColorInt colorInt: Int): Paint =
     Paint(ANTI_ALIAS_FLAG).apply {
         style = STROKE
         color = colorInt
         strokeWidth = 1.2f.dpToPx(context).toFloat()
         strokeJoin = MITER
     }
+
+fun Paint.adjustAlpha(@IntRange(from = 0x0, to = 0xFF) alpha: Int): Paint =
+    Paint(this).apply { color = ColorUtils.setAlphaComponent(color, alpha) }
+
+fun Paint.adjustColor(newColor: Int): Paint =
+    Paint(this).apply { color = newColor }

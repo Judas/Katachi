@@ -19,5 +19,6 @@
     <string name="config_theme_black_stones_border_color">Black stones border</string>
     <string name="config_theme_white_stones_color">White stones</string>
     <string name="config_theme_white_stones_border_color">White stones border</string>
+    <string name="config_theme_highlight">Highlight</string>
 
 </resources>

@@ -3,8 +3,12 @@ package com.judas.katachi.feature.goban
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.RectF
-import com.judas.katachi.feature.theme.Theme
-import com.judas.katachi.feature.theme.toPaints
+import com.judas.katachi.feature.configuration.Highlight.CIRCLE
+import com.judas.katachi.feature.configuration.Highlight.OPACITY
+import com.judas.katachi.feature.configuration.theme.Theme
+import com.judas.katachi.feature.configuration.theme.adjustAlpha
+import com.judas.katachi.feature.configuration.theme.adjustColor
+import com.judas.katachi.feature.configuration.theme.toPaints
 import com.judas.katachi.utility.Logger.Level.ERROR
 import com.judas.katachi.utility.Logger.Level.VERBOSE
 import com.judas.katachi.utility.log
@@ -12,12 +16,12 @@ import com.judas.sgf4k.feature.interpreter.Goban
 import java.lang.Float.max
 import kotlin.math.roundToInt
 
-class GobanDrawer(context: Context, val goban: Goban, theme: Theme) {
+class GobanDrawer(context: Context, private val goban: Goban, private val theme: Theme) {
     private val themePaints = theme.toPaints(context)
     private val bgRect: RectF = RectF()
 
     fun drawOn(canvas: Canvas, width: Float, height: Float) {
-        log(VERBOSE, "drawOn")
+        log(VERBOSE, "drawOn [$width x $height]")
 
         // Quick exit
         if (width <= 0 || height <= 0) return
@@ -31,8 +35,9 @@ class GobanDrawer(context: Context, val goban: Goban, theme: Theme) {
 
             // Draw goban background
             bgRect.set(0f, 0f, fullWidth, fullWidth)
-            canvas.translate(hMargin + gobanPadding, vMargin + gobanPadding)
+            canvas.translate(hMargin, vMargin)
             canvas.drawRect(bgRect, themePaints.backgroundPaint)
+            canvas.translate(gobanPadding, gobanPadding)
 
             // Draw goban lines
             val squareSize = (bgSize / goban.size).roundToInt()
@@ -60,8 +65,6 @@ class GobanDrawer(context: Context, val goban: Goban, theme: Theme) {
             }
 
             // Draw stones
-            val stoneRadius = squareSize / 2.1f
-            val highlightRadius = squareSize / 6.4f
             goban.intersections.forEachIndexed { column, columns ->
                 columns.forEachIndexed { row, intersection ->
                     val stonePaint = themePaints.get(
@@ -76,21 +79,31 @@ class GobanDrawer(context: Context, val goban: Goban, theme: Theme) {
                     )
 
                     if (stonePaint != null && stoneBorderPaint != null) {
+                        val stoneRadius = squareSize / 2.1f
                         val cx = padding + column * squareSize
                         val cy = padding + row * squareSize
-                        // Draw background before stone to hide lines for translucid colors
-                        canvas.drawCircle(cx, cy, stoneRadius, themePaints.backgroundPaint)
-                        canvas.drawCircle(cx, cy, stoneRadius, stonePaint)
-                        canvas.drawCircle(cx, cy, stoneRadius, stoneBorderPaint)
-
                         val isCurrent = goban.currentIntersection?.row == row
                                 && goban.currentIntersection?.column == column
-                        if (isCurrent) {
+                        val alpha =
+                            if (!isCurrent && theme.highlight == OPACITY) 100
+                            else 255
+
+                        // Draw background before stone to hide lines for translucent colors
+                        canvas.drawCircle(cx, cy, stoneRadius, themePaints.backgroundPaint)
+                        canvas.drawCircle(cx, cy, stoneRadius, stonePaint.adjustAlpha(alpha))
+
+                        // Draw background before stone border to avoid sur-opacity
+                        canvas.drawCircle(cx, cy, stoneRadius, stoneBorderPaint.adjustColor(themePaints.backgroundPaint.color))
+                        canvas.drawCircle(cx, cy, stoneRadius, stoneBorderPaint.adjustAlpha(alpha))
+
+                        if (isCurrent && theme.highlight == CIRCLE) {
+                            val circleHighlightRadius = squareSize / 6.4f
+
                             themePaints.get(
                                 state = intersection.state,
                                 stroke = false,
                                 highlight = true
-                            )?.let { canvas.drawCircle(cx, cy, highlightRadius, it) }
+                            )?.let { canvas.drawCircle(cx, cy, circleHighlightRadius, it) }
                         }
                     }
                 }
