@@ -78,6 +78,8 @@ class GobanDrawer(context: Context, val goban: Goban, theme: Theme) {
                     if (stonePaint != null && stoneBorderPaint != null) {
                         val cx = padding + column * squareSize
                         val cy = padding + row * squareSize
+                        // Draw background before stone to hide lines for translucid colors
+                        canvas.drawCircle(cx, cy, stoneRadius, themePaints.backgroundPaint)
                         canvas.drawCircle(cx, cy, stoneRadius, stonePaint)
                         canvas.drawCircle(cx, cy, stoneRadius, stoneBorderPaint)
 
